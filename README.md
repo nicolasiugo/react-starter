@@ -1,3 +1,12 @@
+# Personal notes
+WIP:
+Reviewing https://github.com/rackt/redux/blob/master/docs/advanced/AsyncFlow.md to add async calls.
+Extra libraries: 
+- babel/polyfill
+- https://github.com/gaearon/redux-thunk
+- https://github.com/matthew-andrews/isomorphic-fetch
+
+
 # React Slingshot!
 
 React Slingshot is a comprehensive starter kit for rapid application development using React. It offers a rich development experience including:
