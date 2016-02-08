@@ -15,6 +15,10 @@ const FuelSavingsApp = (props) => {
     props.actions.calculateFuelSavings(props, name, value);
   };
 
+  const loadInfoClick = function () {
+    props.actions.fetchPostsIfNeeded("til");
+  };
+
   const settings = props.fuelSavingsAppState;
 
   return (
@@ -48,6 +52,10 @@ const FuelSavingsApp = (props) => {
               <option value="year">Year</option>
             </select>
           </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button onClick={loadInfoClick}>PUSH THE BUTTON</button></td>
         </tr>
         <tr>
           <td><label>Date Modified</label></td>

@@ -1,4 +1,4 @@
-import {SAVE_FUEL_SAVINGS, CALCULATE_FUEL_SAVINGS} from '../constants/ActionTypes';
+import {SAVE_FUEL_SAVINGS, CALCULATE_FUEL_SAVINGS, REQUEST_POSTS, RECEIVE_POSTS} from '../constants/ActionTypes';
 import calculator from '../businessLogic/fuelSavingsCalculator';
 import dateHelper from '../businessLogic/dateHelper';
 import objectAssign from 'object-assign';
@@ -44,7 +44,18 @@ export default function fuelSavingsAppState(state = initialState, action) {
 			}
 
 			return newState;
-
+		case REQUEST_POSTS:
+			return objectAssign({}, state, {
+				isFetching: true,
+				didInvalidate: false
+			});
+		case RECEIVE_POSTS:
+			return objectAssign({}, state, {
+				isFetching: false,
+				didInvalidate: false,
+				items: action.posts,
+				lastUpdated: action.receivedAt
+			});
 		default:
 			return state;
 	}

@@ -2,15 +2,16 @@
 //This boilerplate file is likely to be the same for each project that uses Redux.
 //With Redux, the actual stores are in /reducers.
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import rootReducer from '../reducers';
 
 export default function configureStore(initialState) {
   let store;
   if (window.devToolsExtension) { //Enable Redux devtools if the extension is installed in developer's browser
-    store = window.devToolsExtension()(createStore)(rootReducer, initialState);
+    store = window.devToolsExtension()(createStore)(rootReducer, initialState, applyMiddleware(thunkMiddleware));
   } else {
-    store = createStore(rootReducer, initialState);
+    store = createStore(rootReducer, initialState, applyMiddleware(thunkMiddleware));
   }
 
   if (module.hot) {
