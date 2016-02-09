@@ -17,7 +17,10 @@ const initialState = {
         monthly: 0,
         annual: 0,
         threeYear: 0
-    }
+    },
+	isFetching: false,
+	didInvalidate: false,
+	items: []
 };
 
 //IMPORTANT: Note that with Redux, state should NEVER be changed.
@@ -26,6 +29,7 @@ const initialState = {
 //Note that I'm using Object.assign to create a copy of current state
 //and update values on the copy.
 export default function fuelSavingsAppState(state = initialState, action) {
+
 	switch (action.type) {
 		case SAVE_FUEL_SAVINGS:
       // For this example, just simulating a save by changing date modified.

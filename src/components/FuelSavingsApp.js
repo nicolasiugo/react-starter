@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import FuelSavingsResults from './FuelSavingsResults';
 import FuelSavingsTextInput from './FuelSavingsTextInput';
+import Posts from './Posts';
 
 const FuelSavingsApp = (props) => {
   const save = function () {
@@ -16,7 +17,7 @@ const FuelSavingsApp = (props) => {
   };
 
   const loadInfoClick = function () {
-    props.actions.fetchPostsIfNeeded("til");
+    props.actions.fetchPostsIfNeeded("TodayILearned");
   };
 
   const settings = props.fuelSavingsAppState;
@@ -54,9 +55,27 @@ const FuelSavingsApp = (props) => {
           </td>
         </tr>
         <tr>
-          <td></td>
           <td><button onClick={loadInfoClick}>PUSH THE BUTTON</button></td>
+          <td>{settings.lastUpdated}</td>
         </tr>
+
+        <tr>
+          <td colSpan="2">
+            {settings.isFetching && settings.items.length === 0 &&
+              <h2>Loading...</h2>
+            }
+            {!settings.isFetching && settings.items.length === 0 &&
+              <h2>Empty.</h2>
+            }
+            {settings.items.length > 0 &&
+              <div style={{ opacity: settings.isFetching ? 0.5 : 1 }}>
+                <Posts posts={settings.items} />
+              </div>
+            }
+          </td>
+        </tr>
+        
+
         <tr>
           <td><label>Date Modified</label></td>
           <td>{settings.dateModified}</td>
